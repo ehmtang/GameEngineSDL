@@ -46,7 +46,7 @@ workspace "GameEngineSDL_Workspace"
 		language "C++"
 	    cppdialect "C++20"
 	    warnings "Extra"
-	    flags { "FatalCompileWarnings","MultiProcessorCompile"}
+	    flags { "MultiProcessorCompile"}
 	    --characterset "MBCS"
 	    characterset "Unicode"
 
