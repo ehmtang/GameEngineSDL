@@ -1,7 +1,7 @@
 #pragma once
 
-#include <SDL.h>
 #include <SDL_main.h>
+#include <SDL.h>
 #include <SDL_image.h>
 #include <stdio.h>
 #include <SDL_timer.h>
