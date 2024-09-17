@@ -403,3 +403,5 @@ Build/
 # Source assets folder
 SourceAssets/
 
+# Include the Libraries
+!lib/

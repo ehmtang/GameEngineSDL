@@ -55,7 +55,7 @@ void GameApp::Initialise(const char* title, int xpos, int ypos, int width, int h
 
 
 	// Create player
-	player = GameObjectManager::Instance().CreateGameObject<GameObject>("assets/particle/circle_01.png", m_renderer);
+	player = GameObjectManager::Instance().CreateGameObject<GameObject>("assets/playerGreen_up1.png", m_renderer);
 
 
 	// Initialisation complete, set gameloop flag to true
