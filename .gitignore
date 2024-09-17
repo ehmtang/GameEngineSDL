@@ -404,4 +404,4 @@ Build/
 SourceAssets/
 
 # Include the Libraries
-!lib/
+!*/lib/
