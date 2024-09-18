@@ -15,18 +15,32 @@ class GameApp
 public:
 	GameApp();
 	~GameApp();
+
 	GameApp(const GameApp&) = delete;
 	GameApp operator = (const GameApp&) = delete;
 
-	void Initialise(const char* title, int xpos, int ypos, int width, int height, bool fullscreen);
-	void Update(float dT);
+	struct GameAppMap
+	{
+		const char* title;
+		int xpos{ 0 };
+		int ypos{ 0 };
+		int width{ 720 };
+		int height{ 540 };
+		bool fullscreen{ false };
+	};
+
+	void Initialise(GameAppMap& desc);
+	void Update(float deltaTime);
 	void Render();
 	void Shutdown();
 	bool Running() { return m_isRunning; }
 	void HandleEvents();
+	
+
+
 
 private:
-	void LoadAssets();
+	void LoadAssets();// should be asset 
 
 	bool m_isRunning;
 	SDL_Window* m_window;		// The window we'll be rendering to

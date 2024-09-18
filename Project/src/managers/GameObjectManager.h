@@ -15,10 +15,14 @@ public:
 		return instance;
 	}
 
+	// Prevent copy and copy assignment 
+	GameObjectManager(const GameObjectManager&) = delete;
+	GameObjectManager& operator= (GameObjectManager&) = delete;
+
 	template<GameObjectable T, typename... Args>
 	T* CreateGameObject(Args... args);
 
-	void Update(float dT);
+	void Update(float deltaTime);
 	void PostUpdate();
 	void Render();
 
@@ -27,10 +31,6 @@ private:
 	// Private constructor and destructor to prevent instantiation and deletion
 	GameObjectManager();
 	~GameObjectManager();
-
-	// Prevent copy and copy assignment 
-	GameObjectManager(const GameObjectManager&) = delete;
-	GameObjectManager operator = (const GameObjectManager&) = delete;
 
 	std::vector<GameObject*> m_pCreatedGameObjects;
 	std::vector<GameObject*> m_pGameObjects;

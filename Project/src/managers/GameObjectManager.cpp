@@ -2,6 +2,7 @@
 
 GameObjectManager::GameObjectManager()
 {
+
 }
 
 GameObjectManager::~GameObjectManager()
@@ -19,15 +20,20 @@ GameObjectManager::~GameObjectManager()
 	m_pGameObjects.clear();
 }
 
-void GameObjectManager::Update(float dT)
+void GameObjectManager::Update(float deltaTime)
 {
 	for (GameObject* obj : m_pGameObjects)
 	{
 		if (!obj->IsDead())
 		{
-			obj->Update(dT);
+			obj->Update(deltaTime);
 		}
 	}
+}
+
+void GameObjectManager::PostUpdate()
+{
+
 }
 
 void GameObjectManager::Render()
