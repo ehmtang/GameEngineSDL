@@ -10,6 +10,14 @@
 #include "glm/glm.hpp"
 #include "glm/gtx/dual_quaternion.hpp"
 
+
+//GameObject::GameObject(const char* textureSheet)
+//{
+//
+//	m_objRenderer = GameObjectManager::Instance().GetRenderer(); //renderer; // should be handled by the gameobjectmanager
+//	m_objTexture = TextureManager::LoadTexture(textureSheet, renderer);	// (texture is the png in this case) read from struct
+//}
+
 GameObject::GameObject(const char* textureSheet, SDL_Renderer* renderer)
 {
 	m_objRenderer = renderer;
@@ -20,18 +28,17 @@ GameObject::GameObject(const char* textureSheet, SDL_Renderer* renderer)
 	m_type = GameObjectType::TYPE_NONE;
 	m_isDead = false;
 	x = 0;
-	y = 0;
+	y = 10;
 }
 
 GameObject::~GameObject()
 {
 }
 
-void GameObject::Update(float dT)
+void GameObject::Update(float deltaTime)
 {
-	dT;
+	deltaTime;
 	x++;
-	y = 0;
 
 	m_srcRect = { 0, 0, 16, 16 };
 	m_dstRect = { x, y, m_srcRect.w * 2, m_srcRect.h * 2 };

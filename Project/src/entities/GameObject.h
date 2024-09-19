@@ -14,7 +14,7 @@ public:
     GameObject(const char* textureSheet, SDL_Renderer* renderer);
     ~GameObject();
 
-    void Update(float dT);
+    void Update(float deltaTime);
     void Render();
     bool IsDead() { return m_isDead; }
 

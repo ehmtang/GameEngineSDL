@@ -5,6 +5,13 @@
 constexpr int SCREEN_WIDTH = 800;
 constexpr int SCREEN_HEIGHT = 600;
 
+// macro code for logging?
+// #ifdef _DEBUG
+//std::cerr << "SDL failed to initialise: " << SDL_GetError() << std::endl; send to text file
+//__debugbreak();
+//#endif // _DEBUG
+//#define LOGGER
+
 GameObject* player;
 
 GameApp::GameApp()
@@ -18,11 +25,12 @@ GameApp::~GameApp()
 
 }
 
-void GameApp::Initialise(const char* title, int xpos, int ypos, int width, int height, bool fullscreen)
+// change this to desc. pattern
+void GameApp::Initialise(GameAppMap& desc)
 {
 	// Check for fullscreen
 	int flags = 0;
-	if (fullscreen)
+	if (desc.fullscreen)
 	{
 		flags = SDL_WINDOW_FULLSCREEN;
 	}
@@ -30,16 +38,18 @@ void GameApp::Initialise(const char* title, int xpos, int ypos, int width, int h
 	// Check SDL initialisation
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
 	{
+#ifdef _DEBUG
 		std::cerr << "SDL failed to initialise: " << SDL_GetError() << std::endl;
 		__debugbreak();
+#endif // _DEBUG
 		return;
 	}
 
 	// Check window initialisation
-	m_window = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
+	m_window = SDL_CreateWindow(desc.title, desc.xpos, desc.ypos, desc.width, desc.height, flags);
 	if (m_window == nullptr)
 	{
-		std::cerr << "Window failed to intialise: " << SDL_GetError() << std::endl;
+		std::cerr << "Window failed to initialise: " << SDL_GetError() << std::endl;
 		__debugbreak();
 		return;
 	}
@@ -53,18 +63,17 @@ void GameApp::Initialise(const char* title, int xpos, int ypos, int width, int h
 		return;
 	}
 
-
 	// Create player
 	player = GameObjectManager::Instance().CreateGameObject<GameObject>("assets/playerGreen_up1.png", m_renderer);
 
 
-	// Initialisation complete, set gameloop flag to true
+	// Initialisation complete, set game loop flag to true
 	m_isRunning = true;
 }
 
-void GameApp::Update(float dT)
+void GameApp::Update(float deltaTime)
 {
-	GameObjectManager::Instance().Update(dT);
+	GameObjectManager::Instance().Update(deltaTime);
 }
 
 void GameApp::Render()
